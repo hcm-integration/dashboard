@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+{% load static %}
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <title>{% block title %} Base template {% endblock %}</title>
+
+     <!-- Bootstrap core CSS-->
+  <link href="{% static "bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+  <!-- Custom styles for this template-->
+  <link href="{% static "css/test.css" %}" rel="stylesheet">
+  <!-- Custom fonts for this template-->
+  <link href="{% static "font-awesome/css/font-awesome.min.css" %}" rel="stylesheet" type="text/css">
+    <!-- Scrollbar Custom CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <!-- Font Awesome JS -->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+<div>
+
+  <nav class="navbar navbar-expand-lg navbar-primary bg-primary fixed-top">
+        
+          <a class="navbar-brand text-white" href="#">Pricing Dashboard</a>
+                <div class="container-fluid"> 
+
+                    <!--<button type="button" id="sidebarCollapse" class="btn btn-info">
+                        <i class="fas fa-align-left"></i>
+                        <span>Toggle Sidebar</span>
+                    </button>-->
+
+
+                   <button type="button" id="sidebarCollapse" class="navbar-btn bg-primary">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </button>
+                    <button class="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-align-justify"></i>
+                    </button>
+
+                     <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <a class="nav-brand text-white btn" data-toggle="modal" data-target="#LogoutModal">
+            <i class="fa fa-fw fa-sign-out"></i>Logout</a>
+        </li>
+      </ul>
+                </div>
+            </nav>
+</div>
+
+    <div class="wrapper">
+         <!-- Sidebar -->
+   <nav id="sidebar">
+        <ul class="list-unstyled components">
+            <li class="active">
+                <a href="#">
+                <i class="fa fa-home"></i>
+                Home
+                </a>
+            </li>
+            <li>
+                <a href="#RateSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">
+                <i class="fa fa-bars"></i>
+                Rate Chart
+                </a>
+                <ul class="collapse list-unstyled" id="RateSubmenu">
+                    <li>
+                        <a href="#">Add</a>
+                    </li>
+                    <li>
+                        <a href="#">View</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+
+        <!-- Page Content  -->
+        <div id="content">
+
+            
+
+            {% block content %}
+
+           <!-- Content page Ends-->
+	          {% endblock %}
+
+              
+
+            </div>
+    </div>
+    
+     <!-- Logout Modal
+    <div class="modal fade" id="LogoutModal" tabindex="-1" role="dialog" aria-labelledby="ModalLogout" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="ModalLogout">Want to Leave?</h5>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+          <div class="modal-footer">
+
+            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+            <a class="btn btn-primary" href="#">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>-->
+
+	<!-- Logout Modal Ends-->
+
+   <!-- Bootstrap core JavaScript-->
+    <script src= "{% static "jquery/jquery.js" %}"></script>
+    <script src= "{% static "bootstrap/js/bootstrap.bundle.min.js" %}"></script>  
+    <!-- jQuery Custom Scroller CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.concat.min.js"></script>
+
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+           $("#sidebar").mCustomScrollbar({
+                theme: "minimal"
+            });
+
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar, #content').toggleClass('active');
+                $(this).toggleClass('active');
+                $('.collapse.in').toggleClass('in');
+                $('a[aria-expanded=true]').attr('aria-expanded', 'false');
+            });
+        });
+    </script>
+
+    {% block js-foot %}
+
+    	{% endblock %}
+</body>
+
+</html>
